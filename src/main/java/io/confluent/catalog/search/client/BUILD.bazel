@@ -1,0 +1,15 @@
+load("@rules_java//java:defs.bzl", "java_library")
+
+java_library(
+    name = "client",
+    srcs = glob(["*.java"]),
+    visibility = ["//visibility:public"],
+    deps = [
+        "//src/main/proto/catalogsearch/v1:catalogsearch_v1_java_grpc",
+        "//src/main/proto/catalogsearch/v1:catalogsearch_v1_java_proto",
+        "@io_grpc_grpc_java//api",
+        "@io_grpc_grpc_java//netty",
+        "@io_grpc_grpc_java//stub",
+        "@maven//:org_slf4j_slf4j_api",
+    ],
+)

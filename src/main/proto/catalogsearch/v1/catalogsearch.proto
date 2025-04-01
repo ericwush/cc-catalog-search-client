@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package catalogsearch.v1;
+
+import "google/protobuf/struct.proto";
+
+option java_multiple_files = true;
+option java_package = "io.confluent.catalog.search.service.proto.v1";
+option java_outer_classname = "CatalogSearchProto";
+
+service CatalogSearch {
+  rpc SearchEntities (SearchEntitiesRequest) returns (SearchEntitiesResponse) {}
+}
+
+message SearchEntitiesRequest {
+  string query = 1;
+  int32 limit = 2;
+  int32 offset = 3;
+}
+
+message SearchEntitiesResponse {
+  repeated Entity entities = 1;
+  int32 total = 2;
+}
+
+message Entity {
+  string id = 1;
+  string type = 2;
+  google.protobuf.Struct metadata = 3;
+}

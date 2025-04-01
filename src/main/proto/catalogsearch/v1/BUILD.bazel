@@ -1,0 +1,25 @@
+load("@rules_proto//proto:defs.bzl", "proto_library")
+load("@io_grpc_grpc_java//:java_grpc_library.bzl", "java_grpc_library")
+load("@rules_java//java:defs.bzl", "java_proto_library")
+
+proto_library(
+    name = "catalogsearch_v1_proto",
+    srcs = ["catalogsearch.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "@com_google_protobuf//:struct_proto",
+    ],
+)
+
+java_proto_library(
+    name = "catalogsearch_v1_java_proto",
+    visibility = ["//visibility:public"],
+    deps = [":catalogsearch_v1_proto"],
+)
+
+java_grpc_library(
+    name = "catalogsearch_v1_java_grpc",
+    srcs = [":catalogsearch_v1_proto"],
+    visibility = ["//visibility:public"],
+    deps = [":catalogsearch_v1_java_proto"],
+)
